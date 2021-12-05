@@ -1,3 +1,9 @@
 td:empty::after{
     content: "\00a0";
 }
+
+.test{
+    position: relative;
+    right: 100;
+    text-align: center;
+}

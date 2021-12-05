@@ -64,7 +64,25 @@ def home():
     empty_table = empty_df.to_html(index=False)
     return render_template("index.html", table_data = X_test_table, empty_table = empty_table)
 
-       
+@app.route("/visuals.html")
+def visuals():
+    
+    return render_template("visuals.html")
+
+@app.route("/visual2.html")
+def visual2():
+    
+    return render_template("visual2.html")
+
+@app.route("/visual3.html")
+def visual3():
+    
+    return render_template("visual3.html")
+
+@app.route("/visual4.html")
+def visual4():
+    
+    return render_template("visual4.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
