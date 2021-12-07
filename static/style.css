@@ -6,4 +6,23 @@ td:empty::after{
     position: relative;
     right: 100;
     text-align: center;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#button{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+#button_div1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#button_div2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

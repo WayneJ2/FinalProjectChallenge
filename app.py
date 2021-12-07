@@ -51,18 +51,29 @@ y_test = pd.read_csv("y_test.csv", index_col = 0)
 
 model = joblib.load("model.pkl")
 
+def get_results_table(X_sample, y_sample):
+    predictions = model.predict(X_sample)
+    prediction_series = pd.Series(predictions)
+    y_sample["Machine Learning Fraud Prediction"] = prediction_series.values
+    return y_sample
+
 # Flask Render
 
 @app.route("/")
 def home():
     X_sample, y_sample = sample_rows(X_test, y_test)
-    X_clean = clean_columns(X_sample)
+    X_clean = clean_columns(X_sample.copy())
     X_test_table = X_clean.to_html(index = False)
 
     ten_row_list = ["" for _ in range(10)]
     empty_df = pd.DataFrame({"Actual Fraud Result": ten_row_list, "Machine Learning Fraud Prediction": ten_row_list})
-    empty_table = empty_df.to_html(index=False)
-    return render_template("index.html", table_data = X_test_table, empty_table = empty_table)
+    empty_table = empty_df.to_html(index=False, table_id="empty_table")
+
+    results_df = get_results_table(X_sample, y_sample)
+    results_df.rename({"is_fraud": "Actual Fraud Result"}, axis=1, inplace=True)
+    results_df.replace({0: "Legitimate", 1: "Fraud"}, inplace = True)
+    results_table = results_df.to_html(index=False, table_id="results_table")
+    return render_template("index.html", table_data = X_test_table, empty_table = empty_table, results_table = results_table)
 
 @app.route("/visuals.html")
 def visuals():

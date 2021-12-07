@@ -13,25 +13,31 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="/visuals.html" id="logo">Fraud Vizualizations</a>
+        <a class="navbar-brand" href="/visuals.html" id="logo">Fraud Visualizations</a>
     </div>
   </nav>
   <div class="container">
     <div class="jumbotron text-center">
       <h2>Fraud Prediction Model</h2>
-        <p>This machine learning model uses a random forest model to predict whether mock credit card transactions are fraudulent or legitimate.</p>
+        <p>This machine learning model uses a random forest model to predict whether mock credit card transactions are fraudulent or legitimate.
+          Use the "New Sample" button to generate ten random transactions from our test data set. Use the "Predict Fraud" button to get the predictions from our model.
+          The correct predictions will be highlighted green, and incorrect predictions will be highlighted in red.
+        </p>
     <br>
-      <div class="test">
-        <a class="navbar-brand" href="/" id="logo">New Dataset</a>
-        <a class="navbar-brand" href="" id="logo">Predict Fraud</a>
+    <div class="row">
+      <div class="col-sm-6" id="button_div1">
+        <a class="navbar-brand btn btn-primary" href="/" id="button">New Sample</a>
+      </div>
+      <div class="col-sm-6" id="button_div2">
+        <a class="navbar-brand btn btn-success" href="#" id="button" onclick="get_results_data()">Predict Fraud</a>
       </div>
     </div>
-
+  </div>
     
     <div class="col-md-8">
         {{table_data|safe}}
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4" id="empty_div">
         {{empty_table|safe}}
     </div>
   </div>
@@ -45,6 +51,12 @@
       <span class="navbar-toggler-icon"></span>
   </button>
 </div> -->
+
+<div id="results_div" style="display:none;">
+  {{results_table|safe}}
+</div>
+
+<script src="{{url_for('static', filename='script.js')}}"></script>
 
 </body>
 
