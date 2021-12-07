@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Fraud Prediction Model</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/visuals.html" id="logo">Fraud Visualizations</a>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="jumbotron text-center">
+      <h2>Fraud Prediction Model</h2>
+        <p>This machine learning model uses a random forest model to predict whether mock credit card transactions are fraudulent or legitimate.
+          Use the "New Sample" button to generate ten random transactions from our test data set. Use the "Predict Fraud" button to get the predictions from our model.
+          The correct predictions will be highlighted green, and incorrect predictions will be highlighted in red.
+        </p>
+    <br>
+    <div class="row">
+      <div class="col-sm-6" id="button_div1">
+        <a class="navbar-brand btn btn-primary" href="/" id="button">New Sample</a>
+      </div>
+      <div class="col-sm-6" id="button_div2">
+        <a class="navbar-brand btn btn-success" href="#" id="button" onclick="get_results_data()">Predict Fraud</a>
+      </div>
+    </div>
+  </div>
+    
+    <div class="col-md-8">
+        {{table_data|safe}}
+    </div>
+    <div class="col-md-4" id="empty_div">
+        {{empty_table|safe}}
+    </div>
+  </div>
+
+<div id="results_div" style="display:none;">
+  {{results_table|safe}}
+</div>
+
+<script src="{{url_for('static', filename='script.js')}}"></script>
+
+</body>
+
+</html>
